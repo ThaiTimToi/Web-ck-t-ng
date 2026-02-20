@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate cho Thái 🐱</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .money-card:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2); }
+        .step-hidden { display: none; }
+        body { background-color: #f0f7ff; }
+    </style>
+</head>
+<body>
+
+    <div class="container mx-auto max-w-2xl px-4 py-10">
+        
+        <div id="step-1" class="animate__animated animate__fadeIn">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-black text-blue-600 mb-2 italic">Donate Support Thái 💙</h1>
+                <p class="text-slate-500 font-medium">Chọn một mệnh giá để tiếp sức cho mình nhé!</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                <div onclick="selectAmount(10000)" class="money-card bg-white p-6 rounded-2xl border-2 border-transparent cursor-pointer transition-all flex flex-col items-center shadow-sm">
+                    <span class="text-3xl mb-2">🎈</span><span class="font-bold text-blue-600 text-xl">10k</span>
+                </div>
+                <div onclick="selectAmount(20000)" class="money-card bg-white p-6 rounded-2xl border-2 border-transparent cursor-pointer transition-all flex flex-col items-center shadow-sm">
+                    <span class="text-3xl mb-2">🍭</span><span class="font-bold text-blue-600 text-xl">20k</span>
+                </div>
+                <div onclick="selectAmount(50000)" class="money-card bg-white p-6 rounded-2xl border-2 border-transparent cursor-pointer transition-all flex flex-col items-center shadow-sm">
+                    <span class="text-3xl mb-2">🍦</span><span class="font-bold text-blue-600 text-xl">50k</span>
+                </div>
+                <div onclick="selectAmount(100000)" class="money-card bg-white p-6 rounded-2xl border-2 border-transparent cursor-pointer transition-all flex flex-col items-center shadow-sm">
+                    <span class="text-3xl mb-2">Cake</span><span class="font-bold text-blue-600 text-xl">100k</span>
+                </div>
+                <div onclick="selectAmount(200000)" class="money-card bg-white p-6 rounded-2xl border-2 border-transparent cursor-pointer transition-all flex flex-col items-center shadow-sm">
+                    <span class="text-3xl mb-2">💎</span><span class="font-bold text-blue-600 text-xl">200k</span>
+                </div>
+                <div onclick="selectAmount(500000)" class="money-card bg-white p-6 rounded-2xl border-2 border-transparent cursor-pointer transition-all flex flex-col items-center shadow-sm">
+                    <span class="text-3xl mb-2">👑</span><span class="font-bold text-blue-600 text-xl">500k</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl shadow-lg border-2 border-blue-100">
+                <input type="number" id="custom-amount" placeholder="Nhập số tiền khác..." class="w-full text-center text-xl font-bold p-3 bg-blue-50 rounded-xl outline-none focus:ring-2 focus:ring-blue-400">
+                <button onclick="selectAmount(document.getElementById('custom-amount').value)" class="w-full mt-4 bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition-all">TIẾP TỤC 🐾</button>
+            </div>
+        </div>
+
+        <div id="step-2" class="step-hidden animate__animated animate__zoomIn">
+            <div class="bg-white p-8 rounded-[40px] shadow-2xl border-4 border-white text-center">
+                <img id="cat-img" src="" class="w-28 h-28 mx-auto rounded-full border-4 border-blue-100 shadow-md mb-4 object-cover">
+                <h2 class="text-xl font-bold text-slate-800">Đang chờ Thái nhận được quà...</h2>
+                <p class="text-sm text-gray-400 mb-4 italic">Hệ thống sẽ tự động xác nhận khi bạn chuyển xong</p>
+
+                <div class="bg-slate-50 p-4 rounded-3xl mb-6 inline-block border shadow-inner">
+                    <img id="qr-image" src="" class="w-64 h-64 rounded-xl">
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-2xl mb-4 border border-blue-200">
+                    <p class="text-xs text-blue-400 font-bold uppercase">Nội dung chuyển khoản</p>
+                    <p id="random-content" class="text-2xl font-mono font-black text-blue-600"></p>
+                </div>
+                
+                <div class="flex items-center justify-center space-x-2 text-blue-500 animate-pulse">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span class="text-sm font-medium">Đang kiểm tra giao dịch thật từ MBBank...</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="step-3" class="step-hidden animate__animated animate__bounceIn text-center">
+            <div class="bg-white p-10 rounded-[40px] shadow-2xl">
+                <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-5xl text-green-500">✔</span>
+                </div>
+                <img src="https://cataas.com/cat/says/Cam%20on%20nhe!?fontSize=40&color=blue" class="w-48 h-48 mx-auto rounded-3xl shadow-lg mb-6">
+                <h2 class="text-3xl font-black text-slate-800 mb-2">Thái đã nhận được!</h2>
+                <p class="text-slate-500">Cảm ơn bạn rất nhiều vì sự ủng hộ này 💙</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- CẤU HÌNH HỆ THỐNG ---
+        const TELEGRAM_TOKEN = '8307318311:AAGPF6RSvX9PwNI8wDggwZskfIdh6IWRtpk';
+        const TELEGRAM_CHAT_ID = '7212441763'; 
+        const SEPAY_API_KEY = 'EP5BGVYKRRLSKYFVC4WTYRHWBQQ30HTDUTXAIDWP6I4GYUL5D8FPNEOAHLQ87ZE7';
+        const BANK_NUMBER = '0971174402'; 
+        const BANK_NAME = 'MB'; 
+        // ------------------------
+
+        let checkInterval;
+        let currentAmount = 0;
+        let currentContent = "";
+
+        async function selectAmount(amount) {
+            if(!amount || amount < 1000) { alert("Vui lòng nhập số tiền hợp lệ nha!"); return; }
+            currentAmount = amount;
+            currentContent = "THAI" + Math.floor(100000 + Math.random() * 900000);
+            
+            // Link QR
+            const qrUrl = `https://img.vietqr.io/image/${BANK_NAME}-${BANK_NUMBER}-compact2.png?amount=${amount}&addInfo=${currentContent}&accountName=NGUYEN VAN THAI`;
+            
+            document.getElementById('qr-image').src = qrUrl;
+            document.getElementById('random-content').innerText = currentContent;
+            document.getElementById('cat-img').src = "https://cataas.com/cat/cute?t=" + Date.now();
+
+            document.getElementById('step-1').classList.add('step-hidden');
+            document.getElementById('step-2').classList.remove('step-hidden');
+
+            sendTelegram(`📢 Đang có người quét mã!\n💰 Số tiền: ${Number(amount).toLocaleString()}đ\n📝 Nội dung: ${currentContent}`);
+            startCheckingProcess();
+        }
+
+        function startCheckingProcess() {
+            if (checkInterval) clearInterval(checkInterval);
+            checkInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`https://api.sepay.vn/transactions/list?account_number=${BANK_NUMBER}&limit=5`, {
+                        headers: { 'Authorization': `Bearer ${SEPAY_API_KEY}` }
+                    });
+                    const data = await response.json();
+                    if (data.transactions) {
+                        const match = data.transactions.find(t => 
+                            t.content.includes(currentContent) && parseInt(t.amount) >= parseInt(currentAmount)
+                        );
+                        if (match) {
+                            clearInterval(checkInterval);
+                            onSuccess(match.amount);
+                        }
+                    }
+                } catch (e) { console.error("Lỗi API:", e); }
+            }, 3000);
+        }
+
+        function onSuccess(received) {
+            document.getElementById('step-2').classList.add('step-hidden');
+            document.getElementById('step-3').classList.remove('step-hidden');
+            sendTelegram(`✅ THÀNH CÔNG!\n💰 Nhận được: ${Number(received).toLocaleString()}đ\n📝 Nội dung: ${currentContent}`);
+            setTimeout(() => { location.reload(); }, 6000);
+        }
+
+        function sendTelegram(text) {
+            fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text })
+            });
+        }
+    </script>
+</body>
+</html>
